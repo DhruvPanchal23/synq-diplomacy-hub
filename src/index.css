@@ -1,42 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* SYNQ.inc Design System - Crimson Red Theme with Gold Accents */
 
 @layer base {
   :root {
+    /* Core Brand Colors - Crimson Red Theme */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 5%;
 
+    /* Crimson Red Primary Palette */
+    --primary: 348 83% 47%;
+    --primary-light: 348 83% 57%;
+    --primary-dark: 348 83% 37%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary Colors - Cream & Gold */
+    --secondary: 45 31% 93%;
+    --secondary-foreground: 0 0% 5%;
+    
+    --gold: 43 74% 66%;
+    --gold-light: 43 74% 76%;
+    --gold-dark: 43 74% 56%;
+
+    /* Neutral Palette */
+    --muted: 220 13% 91%;
+    --muted-foreground: 220 9% 46%;
+    
+    --accent: 43 74% 66%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Card & Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 0 0% 5%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 5%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Interactive Elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 348 83% 47%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --radius: 0.75rem;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Custom SYNQ Gradients */
+    --gradient-crimson: linear-gradient(135deg, hsl(348 83% 47%) 0%, hsl(348 83% 57%) 50%, hsl(348 75% 65%) 100%);
+    --gradient-crimson-dark: linear-gradient(135deg, hsl(348 83% 37%) 0%, hsl(348 83% 47%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 74% 66%) 0%, hsl(43 74% 76%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(348 83% 47%) 0%, hsl(348 83% 57%) 25%, hsl(348 75% 65%) 50%, hsl(348 83% 47%) 100%);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Shadows with Crimson Tint */
+    --shadow-crimson: 0 10px 30px -10px hsl(348 83% 47% / 0.3);
+    --shadow-gold: 0 5px 20px -5px hsl(43 74% 66% / 0.25);
+    --shadow-elegant: 0 20px 60px -20px hsl(348 83% 47% / 0.4);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Animation Variables */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +127,152 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .crimson-gradient {
+    background: var(--gradient-crimson);
+  }
+
+  .gold-gradient {
+    background: var(--gradient-gold);
+  }
+
+  /* Text Styles */
+  .text-gradient-crimson {
+    background: var(--gradient-crimson);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shadow Effects */
+  .shadow-crimson {
+    box-shadow: var(--shadow-crimson);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-spring {
+    transition: var(--transition-spring);
+  }
+
+  /* Custom Button Styles */
+  .btn-hero {
+    @apply bg-primary hover:bg-primary-dark text-primary-foreground font-semibold px-8 py-4 rounded-xl shadow-crimson hover:shadow-elegant transition-spring transform hover:scale-105;
+  }
+
+  .btn-gold {
+    @apply gold-gradient text-accent-foreground font-semibold px-6 py-3 rounded-lg shadow-gold hover:shadow-elegant transition-spring transform hover:scale-105;
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    @apply py-20 px-4 lg:px-8;
+  }
+
+  /* Container Styles */
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  /* Custom Keyframe Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(348 83% 47% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(348 83% 47% / 0.6);
+    }
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary-dark));
   }
 }
