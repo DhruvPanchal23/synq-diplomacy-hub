@@ -28,48 +28,48 @@ const Index = () => {
       </main>
       
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-12">
-        <div className="container-custom">
-          <div className="grid md:grid-cols-3 gap-8">
+      <footer className="bg-gradient-dark text-white py-16">
+        <div className="container-modern">
+          <div className="grid md:grid-cols-3 gap-12">
             <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 crimson-gradient rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">S</span>
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow">
+                  <span className="text-white font-bold text-xl">S</span>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-gradient-crimson">SYNQ</h3>
+                  <h3 className="text-2xl font-bold text-gradient-primary">SYNQ</h3>
                   <p className="text-sm text-white/60">Model United Nations</p>
                 </div>
               </div>
-              <p className="text-white/80 text-sm leading-relaxed">
+              <p className="text-white/80 leading-relaxed">
                 Empowering young minds through debate and diplomacy. 
                 A student-led, non-profit initiative creating unforgettable educational experiences.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-gold">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#about" className="text-white/80 hover:text-white transition-colors">About SYNQ</a></li>
-                <li><a href="#committees" className="text-white/80 hover:text-white transition-colors">Committees</a></li>
-                <li><a href="#venue" className="text-white/80 hover:text-white transition-colors">Venue</a></li>
-                <li><a href="#experience" className="text-white/80 hover:text-white transition-colors">Experience</a></li>
-                <li><a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact</a></li>
+              <h4 className="font-bold mb-6 text-gradient-accent text-lg">Quick Links</h4>
+              <ul className="space-y-3">
+                <li><a href="#about" className="text-white/70 hover:text-white transition-colors hover:translate-x-1 transform inline-block">About SYNQ</a></li>
+                <li><a href="#committees" className="text-white/70 hover:text-white transition-colors hover:translate-x-1 transform inline-block">Committees</a></li>
+                <li><a href="#venue" className="text-white/70 hover:text-white transition-colors hover:translate-x-1 transform inline-block">Venue</a></li>
+                <li><a href="#experience" className="text-white/70 hover:text-white transition-colors hover:translate-x-1 transform inline-block">Experience</a></li>
+                <li><a href="#contact" className="text-white/70 hover:text-white transition-colors hover:translate-x-1 transform inline-block">Contact</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4 text-gold">Connect With Us</h4>
-              <div className="space-y-2 text-sm">
-                <p className="text-white/80">Email: contact@synq.inc</p>
-                <p className="text-white/80">Instagram: @synq.inc</p>
-                <p className="text-white/80">Venue: The Fern, Akota, Vadodara</p>
+              <h4 className="font-bold mb-6 text-gradient-accent text-lg">Connect With Us</h4>
+              <div className="space-y-4">
+                <p className="text-white/70">Email: contact@synq.inc</p>
+                <p className="text-white/70">Instagram: @synq.inc</p>
+                <p className="text-white/70">Venue: The Fern, Akota, Vadodara</p>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-white/20 mt-8 pt-8 text-center">
-            <p className="text-white/60 text-sm">
+          <div className="border-t border-white/10 mt-12 pt-8 text-center">
+            <p className="text-white/50">
               © 2024 SYNQ.inc. All rights reserved. | A student-led, non-profit initiative.
             </p>
           </div>

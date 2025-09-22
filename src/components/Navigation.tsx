@@ -6,6 +6,15 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const navItems = [
+    { name: 'About', href: '#about' },
+    { name: 'MUN 2024', href: '#mun2024' },
+    { name: 'Committees', href: '#committees' },
+    { name: 'Venue', href: '#venue' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Contact', href: '#contact' }
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -15,39 +24,36 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { label: 'Home', href: '#hero' },
-    { label: 'About', href: '#about' },
-    { label: 'MUN 2024', href: '#mun2024' },
-    { label: 'Committees', href: '#committees' },
-    { label: 'Venue', href: '#venue' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Contact', href: '#contact' }
-  ];
-
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}>
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'glass-surface shadow-medium' 
+            : 'bg-transparent'
+        }`}
+      >
+        <div className="container-modern px-6 py-4">
+          <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 lg:w-12 lg:h-12 crimson-gradient rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg lg:text-xl">S</span>
+              <div className="relative">
+                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow">
+                  <span className="text-white font-bold text-xl">S</span>
+                </div>
+                <div className="absolute -inset-1 bg-gradient-primary rounded-xl opacity-20 animate-pulse" />
               </div>
               <div>
-                <h1 className="text-xl lg:text-2xl font-bold text-gradient-crimson">SYNQ</h1>
-                <p className="text-xs text-muted-foreground -mt-1">Model United Nations</p>
+                <h1 className="text-2xl font-bold text-gradient-primary">SYNQ</h1>
+                <p className="text-xs text-muted-foreground">Model United Nations</p>
               </div>
             </div>
 
@@ -55,28 +61,35 @@ const Navigation = () => {
             <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item) => (
                 <button
-                  key={item.label}
+                  key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
+                  className="relative text-foreground hover:text-primary transition-colors font-medium group"
                 >
-                  {item.label}
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-primary transition-all duration-300 group-hover:w-full" />
                 </button>
               ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="hidden lg:flex">
               <Button 
                 onClick={() => scrollToSection('#contact')}
-                className="btn-hero"
+                className="btn-primary"
               >
-                Register Now
+                Join SYNQ MUN
               </Button>
             </div>
 
             {/* Mobile Menu Button */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+              className="lg:hidden glass rounded-xl"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </Button>
           </div>
         </div>
       </nav>
@@ -84,24 +97,26 @@ const Navigation = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setIsMobileMenuOpen(false)} />
-          <div className="fixed top-16 right-0 w-64 h-full bg-white shadow-xl">
-            <div className="p-6 space-y-4">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} />
+          <div className="fixed top-20 left-4 right-4 glass-surface rounded-2xl shadow-large p-6 animate-slide-down">
+            <div className="space-y-4">
               {navItems.map((item) => (
                 <button
-                  key={item.label}
+                  key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium p-2"
+                  className="block w-full text-left py-3 px-4 text-foreground hover:text-primary hover:bg-primary/5 rounded-xl transition-all font-medium"
                 >
-                  {item.label}
+                  {item.name}
                 </button>
               ))}
-              <Button 
-                onClick={() => scrollToSection('#contact')}
-                className="btn-hero w-full mt-6"
-              >
-                Register Now
-              </Button>
+              <div className="pt-4 border-t border-border">
+                <Button 
+                  onClick={() => scrollToSection('#contact')}
+                  className="w-full btn-primary"
+                >
+                  Join SYNQ MUN
+                </Button>
+              </div>
             </div>
           </div>
         </div>
