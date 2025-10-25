@@ -14,16 +14,252 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      committees: {
+        Row: {
+          agenda: string
+          created_at: string | null
+          description: string | null
+          event_id: string
+          id: string
+          name: string
+        }
+        Insert: {
+          agenda: string
+          created_at?: string | null
+          description?: string | null
+          event_id: string
+          id?: string
+          name: string
+        }
+        Update: {
+          agenda?: string
+          created_at?: string | null
+          description?: string | null
+          event_id?: string
+          id?: string
+          name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "committees_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          created_at: string | null
+          event_id: string | null
+          file_name: string
+          file_size: number | null
+          file_url: string
+          id: string
+          title: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          event_id?: string | null
+          file_name: string
+          file_size?: number | null
+          file_url: string
+          id?: string
+          title: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          event_id?: string | null
+          file_name?: string
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          title?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          cover_image_url: string | null
+          created_at: string | null
+          description: string | null
+          event_date: string
+          event_end_date: string | null
+          id: string
+          location: string
+          max_delegates: number | null
+          registration_fee: number | null
+          slug: string
+          status: string | null
+          title: string
+          updated_at: string | null
+          venue_details: string | null
+        }
+        Insert: {
+          cover_image_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          event_date: string
+          event_end_date?: string | null
+          id?: string
+          location: string
+          max_delegates?: number | null
+          registration_fee?: number | null
+          slug: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+          venue_details?: string | null
+        }
+        Update: {
+          cover_image_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          event_date?: string
+          event_end_date?: string | null
+          id?: string
+          location?: string
+          max_delegates?: number | null
+          registration_fee?: number | null
+          slug?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          venue_details?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          committee_preference: string | null
+          created_at: string | null
+          email: string
+          event_id: string
+          full_name: string
+          id: string
+          institution: string | null
+          payment_amount: number | null
+          payment_status: string | null
+          phone: string
+          registration_date: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          committee_preference?: string | null
+          created_at?: string | null
+          email: string
+          event_id: string
+          full_name: string
+          id?: string
+          institution?: string | null
+          payment_amount?: number | null
+          payment_status?: string | null
+          phone: string
+          registration_date?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          committee_preference?: string | null
+          created_at?: string | null
+          email?: string
+          event_id?: string
+          full_name?: string
+          id?: string
+          institution?: string | null
+          payment_amount?: number | null
+          payment_status?: string | null
+          phone?: string
+          registration_date?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +386,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
